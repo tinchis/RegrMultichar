@@ -47,6 +47,7 @@ files {
     'ui/dist/assets/*.ttf',
     'ui/dist/assets/*.otf',
     'ui/dist/assets/*.svg',
+    'ui/dist/*.svg',
 }
 
 
