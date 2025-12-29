@@ -42,7 +42,7 @@ function App() {
   return (
     <>
       {visible &&
-        <div className="h-screen vignette ">
+        <div className="h-screen vignette">
           <CharDetails />
           <SceneSelector />
           <Register />
