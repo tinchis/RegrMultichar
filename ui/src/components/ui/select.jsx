@@ -1,27 +1,6 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
 
-const Select = React.forwardRef(({ className, children, open, onOpenChange, ...props }, ref) => {
-  const isOpen = open !== undefined ? open : false
-
-  return (
-    <div ref={ref} className={cn("relative", className)} {...props}>
-      {React.Children.map(children, (child) => {
-        if (React.isValidElement(child)) {
-          if (child.type === SelectTrigger) {
-            return child
-          }
-          if (child.type === SelectContent) {
-            return isOpen ? child : null
-          }
-        }
-        return child
-      })}
-    </div>
-  )
-})
-Select.displayName = "Select"
-
 const SelectTrigger = React.forwardRef(({ className, children, ...props }, ref) => {
   return (
     <button
@@ -81,5 +60,29 @@ const SelectItem = React.forwardRef(({ className, children, onClick, value, ...p
 })
 SelectItem.displayName = "SelectItem"
 
-export { Select, SelectTrigger, SelectContent, SelectValue, SelectItem }
+const Select = React.forwardRef(({ className, children, open, onOpenChange, ...props }, ref) => {
+  const isOpen = open !== undefined ? open : false
+  let trigger = null
+  let content = null
 
+  React.Children.forEach(children, (child) => {
+    if (React.isValidElement(child)) {
+      if (child.type === SelectTrigger || child.type?.displayName === 'SelectTrigger') {
+        trigger = child
+      }
+      if (child.type === SelectContent || child.type?.displayName === 'SelectContent') {
+        content = child
+      }
+    }
+  })
+
+  return (
+    <div ref={ref} className={cn("relative", className)} {...props}>
+      {trigger}
+      {isOpen && content}
+    </div>
+  )
+})
+Select.displayName = "Select"
+
+export { Select, SelectTrigger, SelectContent, SelectValue, SelectItem }

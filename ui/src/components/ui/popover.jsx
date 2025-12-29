@@ -1,27 +1,6 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
 
-const Popover = React.forwardRef(({ className, open, onOpenChange, children, ...props }, ref) => {
-    const isOpen = open !== undefined ? open : false
-
-    return (
-        <div ref={ref} className={cn("relative", className)} {...props}>
-            {React.Children.map(children, (child) => {
-                if (React.isValidElement(child)) {
-                    if (child.type === PopoverTrigger) {
-                        return child
-                    }
-                    if (child.type === PopoverContent) {
-                        return isOpen ? child : null
-                    }
-                }
-                return child
-            })}
-        </div>
-    )
-})
-Popover.displayName = "Popover"
-
 const PopoverTrigger = React.forwardRef(({ className, children, asChild, ...props }, ref) => {
     if (asChild && React.isValidElement(children)) {
         return React.cloneElement(children, { ref, ...props })
@@ -49,5 +28,30 @@ const PopoverContent = React.forwardRef(({ className, children, ...props }, ref)
     )
 })
 PopoverContent.displayName = "PopoverContent"
+
+const Popover = React.forwardRef(({ className, open, onOpenChange, children, ...props }, ref) => {
+    const isOpen = open !== undefined ? open : false
+    let trigger = null
+    let content = null
+
+    React.Children.forEach(children, (child) => {
+        if (React.isValidElement(child)) {
+            if (child.type === PopoverTrigger || child.type?.displayName === 'PopoverTrigger') {
+                trigger = child
+            }
+            if (child.type === PopoverContent || child.type?.displayName === 'PopoverContent') {
+                content = child
+            }
+        }
+    })
+
+    return (
+        <div ref={ref} className={cn("relative", className)} {...props}>
+            {trigger}
+            {isOpen && content}
+        </div>
+    )
+})
+Popover.displayName = "Popover"
 
 export { Popover, PopoverTrigger, PopoverContent }
