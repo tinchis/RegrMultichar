@@ -48,7 +48,10 @@ body {
 }
 
 .vignette {
-  background: radial-gradient(circle, #0000, #000000ea)
+  background-image: url(/bgTexture.svg), radial-gradient(circle, #0000, #000000ea);
+  background-size: cover, auto;
+  background-position: center, center;
+  background-repeat: no-repeat, no-repeat;
 }
 
 .al {
