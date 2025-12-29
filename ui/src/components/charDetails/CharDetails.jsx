@@ -146,7 +146,7 @@ const CharDetails = () => {
             }
           </div>
 
-          <div className="absolute bottom-[3%]  left-[50%] translate-x-[-50%] flex flex-row items-center">
+          <div className="absolute bottom-[5%]  left-[50%] translate-x-[-50%] flex flex-row items-center">
             <img
               className="p-2 opacity-80 hover:opacity-100"
               onMouseEnter={() => nuicallback("hover")}
