@@ -44,6 +44,8 @@ files {
     'ui/dist/assets/*.png',
     'ui/images/*.png',
     'ui/dist/assets/*.gif',
+    'ui/dist/assets/*.jpg',
+    'ui/dist/assets/*.jpeg',
     'ui/dist/assets/*.ttf',
     'ui/dist/assets/*.otf',
     'ui/dist/assets/*.svg',
