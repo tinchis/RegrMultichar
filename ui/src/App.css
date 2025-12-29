@@ -52,8 +52,6 @@ body {
   background-size: cover, auto;
   background-position: center, center;
   background-repeat: no-repeat, no-repeat;
-  mask-image: radial-gradient(circle, transparent 30%, black 70%);
-  -webkit-mask-image: radial-gradient(circle, transparent 30%, black 70%);
 }
 
 .al {
