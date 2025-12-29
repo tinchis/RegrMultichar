@@ -17,17 +17,17 @@ export const debugPlayers = [
   },
   {
     id: 2,
-    firstname: 'Jane',
-    lastname: 'Smith',
-    emptyslot: false,
-    sex: 'female',
+    firstname: '',
+    lastname: '',
+    emptyslot: true,
+    sex: 'male',
     img: false,
     additionalInfo: {
-      type: 'Doctor',
-      currencyInHand: 15000,
-      currencyInBank: 2500000,
-      DOB: '1990-08-22',
-      nationality: 'CANADA',
+      type: '',
+      currencyInHand: 0,
+      currencyInBank: 0,
+      DOB: '',
+      nationality: '',
     }
   },
   {

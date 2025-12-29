@@ -98,7 +98,7 @@ const CharDetails = () => {
           className="h-screen an"
         >
           <div className="absolute bottom-0 left-[100px] translate-y-[-50%] outline-0 border-0 flex gap-4 items-baseline ">
-            {playersStore &&
+            {playersStore && !playersStore[counter].emptyslot &&
 
               <div
                 className="min-w-[400px] flex flex-col gap-5 italic"
@@ -204,14 +204,21 @@ const CharDetails = () => {
                   style={{ transform: `translate(${-145 * counter}px)` }}
                 >
                   <div
-                    className="rounded-2xl bg-[#00000086] w-[125px] h-[150px] border-[1px] border-[#505050] flex flex-col justify-between transition deletebutton bg-[length:120px]"
+                    className="rounded-2xl bg-[#00000086] w-[125px] h-[150px] border-[1px] border-[#505050] flex flex-col justify-between transition deletebutton bg-[length:120px] relative"
                     style={{
                       transform:
                         counter + 1 == player.id ? "scale(1.1)" : "scale(1.0)",
-                      backgroundImage: `radial-gradient(circle, rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%), url(${player.img}), url(${player.emptyslot ? createicon : player.sex ? profilepicture : profilefemale})`,
+                      backgroundImage: player.emptyslot ? `radial-gradient(circle, rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%)` : `radial-gradient(circle, rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%), url(${player.img}), url(${player.sex ? profilepicture : profilefemale})`,
                       backgroundPosition: "center",
                     }}
                   >
+                    {player.emptyslot && (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <svg className="plus-icon transition-transform duration-200 hover:scale-110" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none">
+                          <path d="M12 4V20M20 12H4" stroke="#9F9FA9" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
+                        </svg>
+                      </div>
+                    )}
                     {/* <div className=" w-[125px] flex items-end justify-end p-2">
                       {counter + 1 == player.id && !player.emptyslot && (
                         <svg
@@ -233,7 +240,7 @@ const CharDetails = () => {
                         {!player.emptyslot && player.lastname}
                       </div>
                       <div className="text-[16px]">
-                        {player.emptyslot ? "NEW SLOT" : player.firstname}
+                        {player.emptyslot ? "CREAR" : player.firstname}
                       </div>
                     </div>
                   </div>
