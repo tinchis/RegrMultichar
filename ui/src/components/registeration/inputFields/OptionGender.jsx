@@ -5,10 +5,10 @@ const OptionGender = ({gValue, value, handleChange}) => {
   return (
     <input
       type='button'
-      className={`flex-1 h-10 rounded-md border text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-700 ${
+      className={`flex-1 h-9 rounded-md border text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 ${
         gValue === value 
-          ? 'bg-white text-black border-white' 
-          : 'bg-gray-900/50 text-gray-400 border-gray-800 hover:bg-gray-900 hover:text-white hover:border-gray-700'
+          ? 'bg-white text-gray-900 border-white shadow-sm' 
+          : 'bg-white/5 text-white border-white/20 hover:bg-white/10 hover:border-white/30'
       }`}
       name='gender'
       onMouseEnter={() => nuicallback('hover')}

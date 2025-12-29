@@ -116,24 +116,25 @@ const Register = () => {
 
   return (
     <div
-      className='flex flex-col items-center justify-center h-screen an bg-black'
+      className='flex flex-col items-center justify-center h-screen an bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950'
       style={{ display: scene == 'charactercreator' ? 'flex' : 'none' }}
       ref={ref}
       tabIndex='0'
     >
-      <div className='flex flex-col gap-8 items-center w-full max-w-md px-6'>
-        <div className='flex flex-col items-center gap-2'>
-          <h1 className='text-2xl font-medium text-white tracking-tight'>
-            {config.Lang.create} {config.Lang.character}
+      <div className='flex flex-col gap-6 items-center w-full max-w-md px-6'>
+        <div className='flex flex-col items-center gap-3 mb-2'>
+          <h1 className='flex flex-col items-center gap-1'>
+            <span className='text-sm font-medium text-gray-400 uppercase tracking-wider'>{config.Lang.create}</span>
+            <span className='text-3xl font-semibold text-white'>{config.Lang.character}</span>
           </h1>
-          <p className='text-sm text-gray-500 text-center'>
+          <p className='text-xs text-gray-400 text-center max-w-sm'>
             {config.Lang.description}
           </p>
         </div>
-        <div className='w-full border border-gray-800 rounded-lg p-8 bg-gray-950/50'>
+        <div className='w-full bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg shadow-lg p-6'>
           <form
             onSubmit={handleSubmit}
-            className='flex flex-col gap-6'
+            className='flex flex-col gap-5'
           >
             {inputFields.map(field => {
               if (['firstName', 'lastName'].includes(field.name)) {
@@ -184,12 +185,12 @@ const Register = () => {
                 )
               }
             })}
-            <div className='flex items-center justify-between pt-4 border-t border-gray-800'>
-              <ESCButton exitfunc={exit} />
+            <div className='flex justify-end pt-2'>
               <SubmitButton />
             </div>
           </form>
         </div>
+        <ESCButton exitfunc={exit} />
       </div>
     </div>
   )
