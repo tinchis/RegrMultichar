@@ -111,7 +111,7 @@ const CharDetails = () => {
             {playersStore && !playersStore[counter].emptyslot &&
 
               <div
-                className="min-w-[700px] flex flex-col gap-5 italic"
+                className="min-w-[400px] flex flex-col gap-5 italic"
                 key={playersStore[counter].id}
               >
                 <div className="relative top-4">
@@ -297,13 +297,7 @@ const CharDetails = () => {
             onMouseEnter={() => nuicallback("hover")}
             className="absolute bottom-[5%] left-[50%] translate-x-[-50%] flex items-center justify-center"
           >
-            <ButtonSVG
-              className="block"
-              style={{ display: 'block', opacity: 1 }}
-              text={playersStore[counter]?.emptyslot ? "CREAR PERSONAJE" : "SELECCIONAR PERSONAJE"}
-              description={playersStore[counter]?.emptyslot ? "Crea un nuevo personaje" : "Confirma tu seleccion de personaje"}
-              subtitle={playersStore[counter]?.emptyslot ? "Crea un nuevo personaje" : "Confirma tu seleccion de personaje"}
-            />
+            <ButtonSVG className="block" style={{ display: 'block', opacity: 1 }} text="SELECCIONAR PERSONAJE" description="Confirma tu seleccion de personaje" subtitle="Confirma tu seleccion de personaje" />
           </div>
         </div>
 

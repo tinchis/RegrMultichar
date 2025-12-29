@@ -4,8 +4,8 @@ import { nuicallback } from '../../../utils/nuicallback'
 
 const SelectGender = ({ gValue, handleChange }) => {
   return (
-    <div className='w-full'>
-      <div className='flex justify-center gap-2 w-full'>
+    <div>
+      <div className='flex justify-center gap-6'>
         {['Male', 'Female'].map(opt => (
           <OptionGender
             key={opt}
