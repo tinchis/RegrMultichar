@@ -208,10 +208,18 @@ const CharDetails = () => {
                     style={{
                       transform:
                         counter + 1 == player.id ? "scale(1.1)" : "scale(1.0)",
-                      backgroundImage: player.emptyslot ? `radial-gradient(circle, rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%)` : `radial-gradient(circle, rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%), url(${player.img}), url(${player.sex ? profilepicture : profilefemale})`,
+                      backgroundImage: player.emptyslot ? `radial-gradient(circle, rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%)` : `radial-gradient(circle, rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%), url(${player.img})`,
                       backgroundPosition: "center",
                     }}
                   >
+                    {!player.emptyslot && (
+                      <div
+                        className="absolute inset-0 bg-cover bg-center opacity-20"
+                        style={{
+                          backgroundImage: `url(${player.sex ? profilepicture : profilefemale})`,
+                        }}
+                      ></div>
+                    )}
                     {player.emptyslot && (
                       <div className="absolute inset-0 flex items-center justify-center">
                         <svg className="plus-icon transition-transform duration-200 hover:scale-110" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none">
