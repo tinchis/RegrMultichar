@@ -46,7 +46,6 @@ files {
     'ui/dist/assets/*.gif',
     'ui/dist/assets/*.ttf',
     'ui/dist/assets/*.otf',
-    'ui/dist/assets/*.svg',
 }
 
 
