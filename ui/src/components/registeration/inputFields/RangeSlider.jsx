@@ -2,25 +2,31 @@ import React from 'react'
 import { nuicallback } from '../../../utils/nuicallback'
 const RangeSlider = ({ height, handleChange }) => {
   return (
-    <>
-      <span className='text-xl text-center text-white mb-[-10px]'>{height}cm</span>
-      <div className='flex items-center w-[100%] bg-[#ffffff62] hover:bg-[#ffffff88] h-[10px] relative'>
-        <input
-          type='range'
-          min='1'
-          max='300'
-          className='appearance-none rounded bg-transparent w-full z-10 range-slider'
-          name='height'
-          onClick={() => nuicallback('click')}
-          onMouseEnter={() => nuicallback('hover')}
-          onChange={handleChange}
-        />
-        <div
-          style={{ width: height / 3 + '%' }}
-          className='absolute h-full bg-white'
-        />
+    <div className='flex flex-col gap-2'>
+      <div className='flex items-center justify-between'>
+        <span className='text-sm font-medium text-gray-300'>Altura</span>
+        <span className='text-lg font-semibold text-white'>{height}cm</span>
       </div>
-    </>
+      <div className='relative flex items-center w-full'>
+        <div className='flex items-center w-full h-2 bg-white/10 rounded-full relative'>
+          <div
+            style={{ width: `${(height / 300) * 100}%` }}
+            className='absolute h-full bg-white rounded-full transition-all'
+          />
+          <input
+            type='range'
+            min='1'
+            max='300'
+            className='appearance-none w-full h-2 bg-transparent cursor-pointer z-10 range-slider'
+            name='height'
+            onClick={() => nuicallback('click')}
+            onMouseEnter={() => nuicallback('hover')}
+            onChange={handleChange}
+            value={height}
+          />
+        </div>
+      </div>
+    </div>
   )
 }
 

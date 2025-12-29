@@ -2,15 +2,14 @@ import React from 'react'
 import plus from '../../../assets/plus.svg'
 import { nuicallback } from '../../../utils/nuicallback'
 const SubmitButton = () => {
-  
-  
   return (
     <button
       type='submit'
       onMouseEnter={() => nuicallback('hover')}
-      className='border w-[110px] p-1    flex justify-center hover:bg-[rgba(255,255,255,0.8)] bg-[rgba(255,255,255,1.0)]'
+      className='inline-flex h-9 items-center justify-center gap-2 rounded-md bg-white px-6 text-sm font-medium text-gray-900 shadow-sm transition-colors hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 disabled:pointer-events-none disabled:opacity-50'
     >
-      <img  src={plus} alt='plus' className='w-[25px] invert' />
+      <img src={plus} alt='plus' className='w-4 h-4' />
+      <span>Crear</span>
     </button>
   )
 }
