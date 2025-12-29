@@ -16,7 +16,7 @@ import profilefemale from "../../assets/profile-female.png";
 
 import createicon from "../../assets/create.png"
 import ButtonSVG from "./ButtonSVG"
-import bgTexture from "../../assets/bgTexture.svg"
+const bgTexture = "/ui/dist/bgTexture.svg"
 
 const CharDetails = () => {
   const [playersStore, SetPlayersStore] = useState(players);
