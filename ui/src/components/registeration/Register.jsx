@@ -137,17 +137,17 @@ const Register = () => {
   useEffect(() => {
     if (shouldShow) {
       document.documentElement.classList.add('dark')
+      return () => {
+        document.documentElement.classList.remove('dark')
+      }
     } else {
-      document.documentElement.classList.remove('dark')
-    }
-    return () => {
       document.documentElement.classList.remove('dark')
     }
   }, [shouldShow])
 
   return (
     <div
-      className='flex flex-col items-end justify-center h-screen an dark'
+      className='flex flex-col items-end justify-center h-screen an'
       style={{ display: shouldShow ? 'flex' : 'none' }}
       ref={ref}
       // onKeyDown={handlekey}
