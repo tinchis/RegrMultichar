@@ -26,7 +26,7 @@ import {
 } from '@/components/ui/card'
 import bgReminder from '../../assets/bgReminder.jpg'
 
-const SHOW_REGISTER_IN_DEV = true
+const SHOW_REGISTER_IN_DEV = false
 
 const Register = () => {
   const [user, setUser] = useState({
@@ -153,17 +153,17 @@ const Register = () => {
       // onKeyDown={handlekey}
       tabIndex='0'
     >
-      <div className='mr-[320px] flex flex-col gap-[7px] items-center scale-110 '>
-        <h1 className='flex flex-col items-center text-center gap-2 text-white relative top-2'>
+      <div className='mr-20 flex flex-col gap-[7px]'>
+        <h1 className='flex flex-col gap-2 text-white relative top-2'>
           <span className='text-[23px] tracking-[6px] uppercase text-[#ffffff86] font-bold  relative top-[17px] '>{config.Lang.create}</span>
           <span className='text-[36px] font-bold uppercase  text-[#FFFFFF] '>{config.Lang.character}</span>
         </h1>
-        <p className='text-[#ffffffe0] font-bold text-[9px] w-[240px] uppercase text-center'>
+        <p className='text-[#969696e0] font-bold text-[9px] w-[440px] uppercase'>
           {config.Lang.description}
         </p>
         <form
           onSubmit={handleSubmit}
-          className='flex flex-col w-[240px] items-center gap-4 mt-3 font-bold text-[14px]'
+          className='flex flex-col w-full items-center gap-4 mt-3 font-bold text-[14px]'
         >
           {inputFields.map(field => {
             if (['firstName', 'lastName'].includes(field.name)) {
