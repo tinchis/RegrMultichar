@@ -172,26 +172,27 @@ const CharDetails = () => {
             }
           </div>
 
-          <div className="absolute bottom-[20%]  left-[50%] translate-x-[-50%] flex flex-row items-center">
-            <img
-              className="p-2 opacity-80 hover:opacity-100"
+          <div className="absolute bottom-[16%]  left-[50%] translate-x-[-50%] flex flex-row items-center">
+            <div
+              className="p-2 opacity-80 hover:opacity-100 cursor-pointer bg-[#18181B] rounded-full w-10 h-10 flex items-center justify-center border border-[#3F3F46]/50"
               onMouseEnter={() => nuicallback("hover")}
-              src={lefticon}
               onClick={handleQ}
-              alt=""
-            />
+            >
+              <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ transform: 'rotate(180deg)' }}>
+                <path d="M0.832032 0.833008L5.83203 5.83301L0.832031 10.833" stroke="#9F9FA9" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </div>
 
             <div className="overflow-hidden w-[435px] flex flex-row items-center">
 
 
               <div
-                className="transition-[500ms] p-[10px] flex items-center justify-center"
+                className="transition-[600ms] p-[10px] flex items-center justify-center"
                 style={{ transform: `translate(${-145 * counter}px)` }}
               >
                 <div
-                  className="bg-[#00000086] w-[125px] h-[150px] border-[1px] border-[#C9C9C9] flex flex-col justify-between transition deletebutton"
+                  className="rounded-2xl bg-[#00000086] w-[125px] h-[150px] border-[1px] border-[#505050] flex flex-col justify-between transition deletebutton"
                   style={{
-                    background: `radial-gradient(circle, rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%)`,
                     backgroundPosition: "center",
                   }}
                 ></div>
@@ -199,11 +200,11 @@ const CharDetails = () => {
 
               {playersStore && playersStore.map((player) => (
                 <div
-                  className="transition-[500ms] p-[10px] flex items-center justify-center"
+                  className="transition-[600ms] p-[10px] flex items-center justify-center"
                   style={{ transform: `translate(${-145 * counter}px)` }}
                 >
                   <div
-                    className="bg-[#00000086] w-[125px] h-[150px] border-[1px] border-[#C9C9C9] flex flex-col justify-between transition deletebutton bg-[length:120px]"
+                    className="rounded-2xl bg-[#00000086] w-[125px] h-[150px] border-[1px] border-[#505050] flex flex-col justify-between transition deletebutton bg-[length:120px]"
                     style={{
                       transform:
                         counter + 1 == player.id ? "scale(1.1)" : "scale(1.0)",
@@ -227,11 +228,11 @@ const CharDetails = () => {
                         </svg>
                       )}
                     </div> */}
-                    <div className="text-[#FFFFFF] font-bold uppercase flex justify-center items-center w-[100%] flex-col p-2">
-                      <div className="relative top-2 text-[13px] opacity-60">
+                    <div className="flex flex-col gap-1 absolute bottom-0 text-[#c2c2c4] tracking-tight font-bold uppercase justify-center items-center w-[100%] p-2">
+                      <div className="relative top-2 text-[13px] text-[#8f8f8f]">
                         {!player.emptyslot && player.lastname}
                       </div>
-                      <div className="text-[20px]">
+                      <div className="text-[16px]">
                         {player.emptyslot ? "NEW SLOT" : player.firstname}
                       </div>
                     </div>
@@ -240,11 +241,11 @@ const CharDetails = () => {
               ))}
 
               <div
-                className="transition-[500ms] p-[10px] flex items-center justify-center"
+                className="transition-[600ms] p-[10px] flex items-center justify-center"
                 style={{ transform: `translate(${-145 * counter}px)` }}
               >
                 <div
-                  className="bg-[#00000086] w-[125px] h-[150px] border-[1px] border-[#C9C9C9] flex flex-col justify-between transition deletebutton"
+                  className="rounded-2xl bg-[#00000086] w-[125px] h-[150px] border-[1px] border-[#505050] flex flex-col justify-between transition deletebutton"
                   style={{
                     background: `radial-gradient(circle, rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%)`,
                     backgroundPosition: "center",
@@ -255,19 +256,21 @@ const CharDetails = () => {
 
             </div>
 
-            <img
-              className="p-2 opacity-80 hover:opacity-100"
+            <div
+              className="p-2 opacity-80 hover:opacity-100 cursor-pointer bg-[#18181B] rounded-full w-10 h-10 flex items-center justify-center border border-[#3F3F46]/50"
               onMouseEnter={() => nuicallback("hover")}
-              src={righticon}
               onClick={handleE}
-              alt=""
-            />
+            >
+              <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0.832032 0.833008L5.83203 5.83301L0.832031 10.833" stroke="#9F9FA9" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </div>
           </div>
           {/* BUTTON SELECT CHARACTER HERE */}
           <div
             onClick={handleplay}
             onMouseEnter={() => nuicallback("hover")}
-            className="absolute bottom-[7%] left-[50%] translate-x-[-50%] flex items-center justify-center"
+            className="absolute bottom-[5%] left-[50%] translate-x-[-50%] flex items-center justify-center"
           >
             <ButtonSVG className="block" style={{ display: 'block', opacity: 1 }} text="SELECCIONAR PERSONAJE" description="Confirma tu seleccion de personaje" subtitle="Confirma tu seleccion de personaje" />
           </div>
