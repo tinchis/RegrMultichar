@@ -33,40 +33,24 @@ const DatePicker = ({ handleDate, dobVisible, handleChange }) => {
   }
 
   return (
-    <div className='flex flex-col gap-1.5 relative'>
-      <label className='text-sm font-medium text-gray-300'>
-        {config.Lang.dob}
-      </label>
-      <div className='relative'>
-        <button
-          type='button'
-          onClick={handleDate}
-          onMouseEnter={() => nuicallback('hover')}
-          className='flex h-9 w-full items-center justify-between rounded-md border border-white/20 bg-white/5 px-3 py-1 text-sm text-white shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/50 focus-visible:border-white/40 hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-50'
-        >
-          <span className={buttonValue !== config.Lang.dob ? 'text-white' : 'text-gray-400'}>
-            {buttonValue}
-          </span>
-          <img className='w-4 h-4' src={calendericon} alt="" />
-        </button>
-      </div>
+    <>
       <div
-        className={`absolute top-full left-0 right-0 z-50 mt-1 rounded-md border border-white/20 bg-white/10 backdrop-blur-sm shadow-lg ${
-          dobVisible ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0 invisible'
+        className={`text-[13px] absolute right-[290px] top-[100px] flex flex-col bg-[rgba(0,0,0,0.5)] w-[230px] ${
+          dobVisible ? 'max-h-full' : 'max-h-0'
         } overflow-hidden transition-all`}
       >
-        <div className='flex justify-center items-center p-4 gap-4'>
-          <div className='flex flex-col items-center gap-2'>
-            <span className='text-xs font-medium text-gray-300 uppercase tracking-wider'>{config.Lang.year}</span>
-            <ul className='h-[300px] w-20 overflow-y-auto rounded-md border border-white/20 bg-white/5 p-2 scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent'>
+        <div className='flex justify-center items-center h-[400px]'>
+          <div className='flex flex-col items-center'>
+            <span className='text-white text-center mt-4'>{config.Lang.year}</span>
+            <ul className='h-[340px] overflow-y-scroll border border-white m-1 p-1 scrollbar-thumb-white scrollbar-track-black scrollbar-thin'>
               {getYears(passCurrentYear).map(year => (
                 (year > config.mindob && year < config.maxdob) &&
                 <li key={year}>
                   <button
                     type='button'
                     onClick={() => {setCurrentYear(year); nuicallback('click')}}
-                    className={`w-full rounded px-2 py-1 text-sm transition-colors ${
-                      year === currentYear ? 'bg-white text-gray-900 font-medium' : 'text-white hover:bg-white/10'
+                    className={`scrollbar-thumb-white scrollbar-track-black scrollbar-thin ${
+                      year === currentYear ? 'text-black bg-white px-1' : 'text-white px-1'
                     }`}
                   >
                     {year}
@@ -75,9 +59,9 @@ const DatePicker = ({ handleDate, dobVisible, handleChange }) => {
               ))}
             </ul>
           </div>
-          <div className='flex flex-col items-center gap-2'>
-            <span className='text-xs font-medium text-gray-300 uppercase tracking-wider'>{config.Lang.day}</span>
-            <ul className='h-[300px] w-16 overflow-y-auto rounded-md border border-white/20 bg-white/5 p-2 scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent'>
+          <div className='flex flex-col items-center mt-4'>
+            <span className='text-white'>{config.Lang.day}</span>
+            <ul className='h-[340px] overflow-y-scroll border border-white m-1 p-1 scrollbar-thumb-white scrollbar-track-black scrollbar-thin'>
               {range(
                 1,
                 getNumberOfDaysInMonth(currentYear, currentMonth) + 1
@@ -85,8 +69,8 @@ const DatePicker = ({ handleDate, dobVisible, handleChange }) => {
                 <li key={day}>
                   <button
                     type='button'
-                    className={`w-full rounded px-2 py-1 text-sm transition-colors ${
-                      day === currentDay ? 'bg-white text-gray-900 font-medium' : 'text-white hover:bg-white/10'
+                    className={`day  ${
+                      day === currentDay ? 'text-black bg-white px-1' : 'text-white px-1'
                     }`}
                     onClick={() => {setCurrentDay(day); nuicallback('click')}}
                   >
@@ -96,16 +80,16 @@ const DatePicker = ({ handleDate, dobVisible, handleChange }) => {
               ))}
             </ul>
           </div>
-          <div className='flex flex-col items-center gap-2'>
-            <span className='text-xs font-medium text-gray-300 uppercase tracking-wider'>{config.Lang.month}</span>
-            <ul className='h-[300px] w-24 overflow-y-auto rounded-md border border-white/20 bg-white/5 p-2 scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent'>
+          <div className='flex flex-col items-center mt-4'>
+            <span className='text-white'>{config.Lang.month}</span>
+            <ul className='h-[340px] border border-white m-1 p-1'>
               {monthNames.map((month, i) => (
                 <li key={i}>
                   <button
                     type='button'
                     onClick={() => {setCurrentMonth(i); nuicallback('click')}}
-                    className={`w-full rounded px-2 py-1 text-sm transition-colors ${
-                      i === currentMonth ? 'bg-white text-gray-900 font-medium' : 'text-white hover:bg-white/10'
+                    className={`month ${
+                      i === currentMonth ? 'text-black bg-white px-1' : 'text-white px-1'
                     }`}
                   >
                     {month}
@@ -115,18 +99,25 @@ const DatePicker = ({ handleDate, dobVisible, handleChange }) => {
             </ul>
           </div>
         </div>
-        <div className='border-t border-white/10 p-3 flex justify-end'>
-          <button
-            onClick={handleDateChange}
-            onMouseEnter={() => nuicallback('hover')}
-            type='button'
-            className='h-9 px-4 rounded-md bg-white text-gray-900 text-sm font-medium hover:bg-gray-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50'
-          >
-            {config.Lang.done}
-          </button>
-        </div>
+        <button
+          onClick={handleDateChange}
+          onMouseEnter={() => nuicallback('hover')}
+          type='button'
+          className='bg-slate-50 hover:bg-white text-black self-justify-end'
+        >
+          {config.Lang.done}
+        </button>
       </div>
-    </div>
+      <button
+        type='button'
+        onClick={handleDate}
+        onMouseEnter={() => nuicallback('hover')}
+        className='w-[100%] text-start  border-[1px] border-white focus:outline-none  text-white p-[6px] hover:bg-[rgba(0,0,0,0.8)]  bg-[rgba(0,0,0,0.5)] '
+      >
+        {buttonValue}
+      </button>
+      <img className='absolute ml-[210px] mt-[111px] w-[13px]' src={calendericon} alt="" />
+    </>
   )
 }
 
