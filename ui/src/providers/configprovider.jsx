@@ -91,6 +91,10 @@ const ConfigProvider = ({ children }) => {
   });
 
   useEffect(() => {
+    const isDev = !window.invokeNative;
+    if (isDev) {
+      return;
+    }
     nuicallback("getConfig").then((data) => setConfig(data));
   }, []);
 

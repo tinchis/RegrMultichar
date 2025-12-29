@@ -4,6 +4,7 @@ import { nuicallback } from '../../../utils/nuicallback'
 import { useConfig } from '../../../providers/configprovider'
 import arrow from '../../../assets/arrow.png'
 
+
 const Option = ({ name, handleChange, optionsPopup, handleOptionsPopup }) => {
   const [selectedCountry, setSelecetedCountry] = useState('')
   const [searchCountry, setSearchCountry] = useState('')
@@ -21,9 +22,8 @@ const Option = ({ name, handleChange, optionsPopup, handleOptionsPopup }) => {
   return (
     <>
       <ul
-        className={`absolute right-[290px] w-[260px] bg-[rgba(0,0,0,0.5)] border border-1px border-white ${
-          optionsPopup ? 'max-h-[300px]' : 'max-h-[0] invisible'
-        } transition-all overflow-y-scroll
+        className={`absolute right-[290px] w-[260px] bg-[rgba(0,0,0,0.5)] border border-1px border-white ${optionsPopup ? 'max-h-[300px]' : 'max-h-[0] invisible'
+          } transition-all overflow-y-scroll
         scrollbar-thumb-white scrollbar-track-black scrollbar-thin`}
       >
         <li>
@@ -61,13 +61,13 @@ const Option = ({ name, handleChange, optionsPopup, handleOptionsPopup }) => {
       <button
         type='button'
         onClick={handleOptionsPopup}
-  onMouseEnter={() => nuicallback('hover')}
+        onMouseEnter={() => nuicallback('hover')}
         className='text-start w-[100%]  border-[1px] border-white focus:outline-none  text-white p-[6px] hover:bg-[rgba(0,0,0,0.8)] bg-[rgba(0,0,0,0.5)]'
       >
         {selectedCountry || config.Lang.nationality}
       </button>
 
-       <img style={{transform: optionsPopup ? 'rotate(90deg)' : 'rotate(0deg)'}} className='absolute ml-[210px] mt-[162px] w-4' src={arrow} alt="" />
+      <img style={{ transform: optionsPopup ? 'rotate(90deg)' : 'rotate(0deg)' }} className='absolute ml-[210px] mt-[162px] w-4' src={arrow} alt="" />
     </>
   )
 }

@@ -1,4 +1,4 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import CharDetails from "./components/charDetails/CharDetails";
 import Register from "./components/registeration/Register";
@@ -13,34 +13,40 @@ import Loading from "./components/loading/LoadingScreen";
 function App() {
   const [visible, setVisible] = useState(false);
   const scene = useSelector((state) => state.screen);
+  const isDev = !window.invokeNative;
 
   const dispatch = useDispatch();
-  
-      useEffect(() => {
-  
-        const handlemessage = (event) => {
-   
-          switch (event.data.action) {
-            case 'visible':
-              setVisible(event.data.data)
-              dispatch(updatescreen('characterselection'))
-              break
-          }
-        }
-    
-        window.addEventListener('message',handlemessage);
-        return () => window.removeEventListener('message',handlemessage);
-    
-      }, [])
+
+  useEffect(() => {
+    if (isDev) {
+      setVisible(true);
+      dispatch(updatescreen('characterselection'));
+      return;
+    }
+
+    const handlemessage = (event) => {
+
+      switch (event.data.action) {
+        case 'visible':
+          setVisible(event.data.data)
+          dispatch(updatescreen('characterselection'))
+          break
+      }
+    }
+
+    window.addEventListener('message', handlemessage);
+    return () => window.removeEventListener('message', handlemessage);
+
+  }, [isDev, dispatch])
 
   return (
     <>
-    {visible &&
-      <div className="h-screen vignette ">
-        <CharDetails />
-        <SceneSelector />
-        <Register />
-      </div>
+      {visible &&
+        <div className="h-screen vignette ">
+          <CharDetails />
+          <SceneSelector />
+          <Register />
+        </div>
       }
       <Loading />
       <AdminPanel />

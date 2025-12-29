@@ -15,6 +15,9 @@ import profilepicture from "../../assets/profile.png";
 import profilefemale from "../../assets/profile-female.png";
 
 import createicon from "../../assets/create.png"
+import ButtonSVG from "./ButtonSVG"
+import bgTexture from "../../assets/bgTexture.svg"
+
 const CharDetails = () => {
   const [playersStore, SetPlayersStore] = useState(players);
   const [counter, setCounter] = useState(0);
@@ -80,61 +83,67 @@ const CharDetails = () => {
         <DeleteConfirm id={counter + 1} />
       ) : (
         <div
-          style={{ display: scene == "characterselection" ? "flex" : "none" }}
+          style={{
+            display: scene == "characterselection" ? "flex" : "none",
+            backgroundImage: `url(${bgTexture})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
           className="h-screen an"
         >
           <div className="absolute top-[45%] left-[70px] translate-y-[-50%] outline-0 border-0 flex gap-4 items-baseline ">
             {playersStore &&
 
-                  <div
-                    className="min-w-[400px] flex flex-col gap-3"
-                    key={playersStore[counter].id}
-                  >
-                    <div className="relative top-4">
-                      <div className="absolute mt-[55px] ml-[-35px] flex items-center justify-center text-[12px] bg-[rgba(0,0,0,0.5)] hover:bg-[rgba(0,0,0,0.8)] text-white w-[25px] h-[25px] rounded-[50%] font-bold border-[#C9C9C9] border-[1px]">
-                        <div>{playersStore[counter].id}</div>
-                      </div>
-
-                      <div className=" relative left-1 top-3 text-[20px] tracking-[6px] uppercase text-[#ffffff86] ">
-                        {playersStore[counter].lastname}
-                      </div>
-                      <div className="text-[48px] font-bold uppercase  text-[#FFFFFF] ">
-                        {playersStore[counter].firstname}
-                      </div>
-                    </div>
-
-                    <div className="w-[380px] h-[3px] bg-gradient-to-r from-[#ffffff86] to-[rgba(0,0,0,0)]"></div>
-
-                    <ul className="text-[20px] flex flex-row gap-4">
-                      {Object.keys(playersStore[counter].additionalInfo).map((p, i) => (
-                        <li
-                          key={p}
-                          onMouseEnter={() => nuicallback("hover")}
-                          className="flex flex-col w-[38px] h-[38px] items-center justify-center   bg-[rgba(0,0,0,0.5)] border-[1px] border-[#C9C9C9] gap-2 inf"
-                        >
-                          <img src={icons[i].icon} alt="person" />
-                          <span className="text-white absolute mt-[80px] uppercase text-[10px] font-bold">
-                            {formatNumberToCurrency(playersStore[counter].additionalInfo[p])}
-                          </span>
-                        </li>
-                      ))}
-
-                      <li
-                        onClick={() => {
-                          dispatch(updatescreen("settings"));
-                          nuicallback("click");
-                        }}
-                        onMouseEnter={() => nuicallback("hover")}
-                        className="flex flex-col w-[38px] h-[38px] items-center justify-center   bg-[rgba(0,0,0,0.5)] border-[1px] border-[#C9C9C9] gap-2 inf"
-                      >
-                        <img src={settingsicon} alt="person" />
-                        <span className="text-white absolute mt-[80px] uppercase text-[10px] font-bold">
-                          SETTINGS
-                        </span>
-                      </li>
-                    </ul>
+              <div
+                className="min-w-[400px] flex flex-col gap-3"
+                key={playersStore[counter].id}
+              >
+                <div className="relative top-4">
+                  <div className="absolute mt-[55px] ml-[-35px] flex items-center justify-center text-[12px] bg-[rgba(0,0,0,0.5)] hover:bg-[rgba(0,0,0,0.8)] text-white w-[25px] h-[25px] rounded-[50%] font-bold border-[#C9C9C9] border-[1px]">
+                    <div>{playersStore[counter].id}</div>
                   </div>
-                }
+
+                  <div className=" relative left-1 top-3 text-[20px] tracking-[6px] uppercase text-[#ffffff86] ">
+                    {playersStore[counter].lastname}
+                  </div>
+                  <div className="text-[48px] font-bold uppercase  text-[#FFFFFF] ">
+                    {playersStore[counter].firstname}
+                  </div>
+                </div>
+
+                <div className="w-[380px] h-[3px] bg-gradient-to-r from-[#ffffff86] to-[rgba(0,0,0,0)]"></div>
+
+                <ul className="text-[20px] flex flex-row gap-4">
+                  {Object.keys(playersStore[counter].additionalInfo).map((p, i) => (
+                    <li
+                      key={p}
+                      onMouseEnter={() => nuicallback("hover")}
+                      className="flex flex-col w-[38px] h-[38px] items-center justify-center   bg-[rgba(0,0,0,0.5)] border-[1px] border-[#C9C9C9] gap-2 inf"
+                    >
+                      <img src={icons[i].icon} alt="person" />
+                      <span className="text-white absolute mt-[80px] uppercase text-[10px] font-bold">
+                        {formatNumberToCurrency(playersStore[counter].additionalInfo[p])}
+                      </span>
+                    </li>
+                  ))}
+
+                  <li
+                    onClick={() => {
+                      dispatch(updatescreen("settings"));
+                      nuicallback("click");
+                    }}
+                    onMouseEnter={() => nuicallback("hover")}
+                    className="flex flex-col w-[38px] h-[38px] items-center justify-center   bg-[rgba(0,0,0,0.5)] border-[1px] border-[#C9C9C9] gap-2 inf"
+                  >
+                    <ButtonSVG width="38" height="38" />
+                    <span className="text-white absolute mt-[80px] uppercase text-[10px] font-bold">
+                      SETTINGS
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            }
           </div>
 
           <div className="absolute bottom-[3%]  left-[50%] translate-x-[-50%] flex flex-row items-center">
@@ -147,9 +156,9 @@ const CharDetails = () => {
             />
 
             <div className="overflow-hidden w-[435px] flex flex-row items-center">
-     
 
-            <div
+
+              <div
                 className="transition-[500ms] p-[10px] flex items-center justify-center"
                 style={{ transform: `translate(${-145 * counter}px)` }}
               >
@@ -228,13 +237,13 @@ const CharDetails = () => {
               alt=""
             />
           </div>
-
+          {/* BUTTON SELECT CHARACTER HERE */}
           <div
             onClick={handleplay}
             onMouseEnter={() => nuicallback("hover")}
-            className="absolute bottom-[23%] left-[50%] translate-x-[-50%] flex items-center justify-center bg-[rgba(0,0,0,0.5)]  border-[1px] border-[#C9C9C9]  hover:bg-[rgba(0,0,0,0.8)]  w-[80px] h-[40px] "
+            className="absolute bottom-[23%] left-[50%] translate-x-[-50%] flex items-center justify-center"
           >
-            <img className="w-[20px] " src={playicon} alt="" />
+            <ButtonSVG className="block" style={{ display: 'block', opacity: 1 }} text="SELECCIONAR PERSONAJE" />
           </div>
         </div>
       )}
