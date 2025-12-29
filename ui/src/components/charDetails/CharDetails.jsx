@@ -18,6 +18,16 @@ import createicon from "../../assets/create.png"
 import ButtonSVG from "./ButtonSVG"
 const bgTexture = "/ui/dist/bgTexture.svg"
 
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+
+
 const CharDetails = () => {
   const isDev = !window.invokeNative;
   const [playersStore, SetPlayersStore] = useState(isDev ? debugPlayers : players);
@@ -290,6 +300,7 @@ const CharDetails = () => {
             <ButtonSVG className="block" style={{ display: 'block', opacity: 1 }} text="SELECCIONAR PERSONAJE" description="Confirma tu seleccion de personaje" subtitle="Confirma tu seleccion de personaje" />
           </div>
         </div>
+
       )}
     </>
   );

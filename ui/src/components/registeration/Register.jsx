@@ -16,6 +16,16 @@ import { nuicallback } from '../../utils/nuicallback'
 
 import { useConfig } from '../../providers/configprovider'
 import { updatescreen } from '../../store/screen/screen'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
+
+const SHOW_REGISTER_IN_DEV = false
 
 const Register = () => {
   const [user, setUser] = useState({
@@ -36,6 +46,7 @@ const Register = () => {
   const { config } = useConfig();
 
   const scene = useSelector((state) => state.screen)
+  const isDev = !window.invokeNative
 
 
   const handleDOBToggle = () => {
@@ -59,8 +70,8 @@ const Register = () => {
 
   const handleSubmit = e => {
     e.preventDefault()
-    nuicallback('CreateCharacter',user).then((response) => {
-      if (response == true){
+    nuicallback('CreateCharacter', user).then((response) => {
+      if (response == true) {
         dispatch(updatescreen(''))
       }
     });
@@ -69,7 +80,7 @@ const Register = () => {
   const exit = () => {
     dispatch(updatescreen(''))
     nuicallback('exitcharactercreator').then((response) => {
-       dispatch(updatescreen('characterselection'))
+      dispatch(updatescreen('characterselection'))
     })
   }
 
@@ -82,10 +93,10 @@ const Register = () => {
         exit();
       }
     }
-  
 
-    window.addEventListener('keydown',handlekey);
-    return () => window.removeEventListener('keydown',handlekey);
+
+    window.addEventListener('keydown', handlekey);
+    return () => window.removeEventListener('keydown', handlekey);
   })
 
 
@@ -108,16 +119,35 @@ const Register = () => {
       }
     }
 
-    window.addEventListener('message',handlemessage);
-    return () => window.removeEventListener('message',handlemessage);
+    window.addEventListener('message', handlemessage);
+    return () => window.removeEventListener('message', handlemessage);
 
   }, [])
 
 
+  const shouldShow = scene == 'charactercreator' || (isDev && SHOW_REGISTER_IN_DEV)
+
+  useEffect(() => {
+    if (isDev && SHOW_REGISTER_IN_DEV) {
+      dispatch(updatescreen('charactercreator'))
+    }
+  }, [isDev, dispatch])
+
+  useEffect(() => {
+    if (shouldShow) {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+    return () => {
+      document.documentElement.classList.remove('dark')
+    }
+  }, [shouldShow])
+
   return (
     <div
-      className='flex flex-col items-end justify-center h-screen an '
-      style={{display: scene == 'charactercreator' ? 'flex' : 'none'}}
+      className='flex flex-col items-end justify-center h-screen an dark'
+      style={{ display: shouldShow ? 'flex' : 'none' }}
       ref={ref}
       // onKeyDown={handlekey}
       tabIndex='0'
@@ -128,7 +158,7 @@ const Register = () => {
           <span className='text-[36px] font-bold uppercase  text-[#FFFFFF] '>{config.Lang.character}</span>
         </h1>
         <p className='text-[#ffffffe0] font-bold text-[9px] w-[240px] uppercase text-center'>
-        {config.Lang.description}
+          {config.Lang.description}
         </p>
         <form
           onSubmit={handleSubmit}
@@ -182,10 +212,30 @@ const Register = () => {
               )
             }
           })}
-          <SubmitButton/>
+          <SubmitButton />
         </form>
       </div>
-      <ESCButton  exitfunc={exit}  />
+      <ESCButton exitfunc={exit} />
+      <div className='absolute bottom-6 right-6'>
+        <Card className='w-80'>
+          <CardHeader>
+            <CardTitle>Información</CardTitle>
+            <CardDescription>
+              Formulario de registro de personaje
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p className='text-sm text-muted-foreground'>
+              Completa todos los campos para crear tu personaje.
+            </p>
+          </CardContent>
+          <CardFooter>
+            <p className='text-xs text-muted-foreground'>
+              Presiona ESC para salir
+            </p>
+          </CardFooter>
+        </Card>
+      </div>
     </div>
   )
 }
