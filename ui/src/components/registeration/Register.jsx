@@ -24,8 +24,9 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
+import bgReminder from '../../assets/bgReminder.jpg'
 
-const SHOW_REGISTER_IN_DEV = false
+const SHOW_REGISTER_IN_DEV = true
 
 const Register = () => {
   const [user, setUser] = useState({
@@ -216,24 +217,15 @@ const Register = () => {
         </form>
       </div>
       <ESCButton exitfunc={exit} />
-      <div className='absolute bottom-6 right-6'>
-        <Card className='w-80'>
+      <div className='absolute bottom-6 left-6'>
+        <Card className='w-80 overflow-hidden'>
+          <img src={bgReminder} alt="Bloq" className='w-full h-20 object-cover rounded-t-xl' />
           <CardHeader>
-            <CardTitle>Información</CardTitle>
+            <CardTitle>Usa <span className='text-[10px] bg-white/25 px-2 py-0.5 rounded-sm leading-7'>BLOQ. MAYÚS</span> para alternar las interacciones del servidor</CardTitle>
             <CardDescription>
-              Formulario de registro de personaje
+              Recomendación: Para notar un mejor rendimiento desactiva estas cuando no vayas a interactuar con objetos, puntos o NPCs.
             </CardDescription>
           </CardHeader>
-          <CardContent>
-            <p className='text-sm text-muted-foreground'>
-              Completa todos los campos para crear tu personaje.
-            </p>
-          </CardContent>
-          <CardFooter>
-            <p className='text-xs text-muted-foreground'>
-              Presiona ESC para salir
-            </p>
-          </CardFooter>
         </Card>
       </div>
     </div>
