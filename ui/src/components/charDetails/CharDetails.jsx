@@ -49,6 +49,7 @@ const CharDetails = () => {
   }, [scene]);
 
   const handleplay = () => {
+    document.documentElement.classList.remove('dark')
     dispatch(updatescreen(""));
     nuicallback("playcharacter", playersStore[counter].id);
   };

@@ -145,6 +145,12 @@ const Register = () => {
     }
   }, [shouldShow])
 
+  useEffect(() => {
+    if (scene === '') {
+      document.documentElement.classList.remove('dark')
+    }
+  }, [scene])
+
   return (
     <div
       className='flex flex-col items-end justify-center h-screen an dark'
